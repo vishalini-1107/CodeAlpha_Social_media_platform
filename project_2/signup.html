@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .signup-box {
+            width: 320px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .signup-box h2 {
+            text-align: center;
+            padding-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .signup-box form {
+            padding: 20px;
+        }
+
+        .signup-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .signup-box button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .signup-box button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-box">
+                <h2>Create New Account</h2>
+<form onsubmit="signup(event)">
+    <input id="suUser" type="text" placeholder="Username" required>
+    <input id="suEmail" type="email" placeholder="Email ID" required>
+    <input id="suPass" type="password" placeholder="New Password" required>
+    <input id="suRePass" type="password" placeholder="Rewrite Password" required>
+    <input id="suPhone" type="tel" placeholder="Contact Number" required>
+    <input id="suDob" type="date" required>
+
+    <button type="sumbit" onclick="signup(event)">Create Account</button>
+    
+</form>
+<p id="signupMsg" style="text-align:center;color:red;"></p>
+<script src="scripts.js"></script>
+    </div>
+
+</body>
+</html>
+
+

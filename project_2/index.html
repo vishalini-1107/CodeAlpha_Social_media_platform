@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        .login-box {
+            width: 300px;
+            margin: 100px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .login-box button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="login-box">
+        <h2 style="padding-top: 25px;">Login</h2>
+
+        <!-- 🔴 LOOK SAME, ONLY id ADD -->
+        <form style="padding: 20px; margin-right: 20px;">
+            <input id="loginUser" type="text" placeholder="Username" required>
+            <input id="loginPass" type="password" placeholder="Password" required>
+
+            <button type="button" onclick="login()" style="margin-top:20px">
+                Login
+            </button>
+            <a href="singup.html"><P style="text-align: center;">Create New Account!</P></a>
+
+            <p id="loginMsg" style="text-align:center;color:red;"></p>
+        </form>
+
+        <script src="scripts.js"></script>
+    </div>
+</body>
+<script>
+function login() {
+  const loginUser = document.getElementById("loginUser").value;
+  const loginPass = document.getElementById("loginPass").value;
+  const loginMsg  = document.getElementById("loginMsg");
+
+  fetch("http://127.0.0.1:3000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      username: loginUser,
+      password: loginPass
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.msg === "Login success") {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      window.location.href = "home.html";
+    } else {
+      loginMsg.innerText = data.msg;
+    }
+  })
+  .catch(() => {
+    loginMsg.innerText = "Server error";
+  });
+}
+</script>
+</html>
+ 
